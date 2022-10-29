@@ -315,7 +315,7 @@ function onHandlePlayer(event) {
             socket.connect();
         });
     } else {
-        location.href = '/view/index.html';
+        location.href = '/index.html';
     }
 
 

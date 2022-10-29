@@ -9,7 +9,7 @@ function loginUser() {
         const audio = new Audio('./assets/audio/assovio-whatsapp.mp3');
         audio.addEventListener('ended', () => {
 
-            location.href = '/view/zap.html'
+            location.href = '/zap.html'
         });
         
         audio.play();
