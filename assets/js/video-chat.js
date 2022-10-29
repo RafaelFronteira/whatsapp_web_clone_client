@@ -53,6 +53,7 @@ function callUser(peerID) {
 }
 
 function endCall() {
+  video_call_alert.classList.add('hide');
   document.getElementById('video-user').innerHTML = "";
   document.getElementById('video-otheruser').innerHTML = "";
 
