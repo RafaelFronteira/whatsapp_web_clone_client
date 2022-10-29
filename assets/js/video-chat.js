@@ -45,16 +45,34 @@ function callUser(peerID) {
 
     });
 
+    call.on('close', () => {
+      endCall()
+    })
+
   });
 }
 
-function cancelCall() {
+function endCall() {
+  document.getElementById('video-user').innerHTML = "";
+  document.getElementById('video-otheruser').innerHTML = "";
 
+  if (!callReceived) return;
+
+  try {
+    callReceived.close();
+  } catch (error) { }
+
+  callReceived = null;
 }
 
 function aceeptCall() {
   video_call_alert.classList.add('hide');
   answerCall(callReceived);
+}
+
+function closeCall() {
+  video_call_alert.classList.add('hide');
+  endCall();
 }
 
 
@@ -89,7 +107,6 @@ function answerCall(call) {
       });
     });
   });
-
 }
 
 
