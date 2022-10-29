@@ -101,7 +101,42 @@ header {
     overflow-y: auto;
 }
 
-.user__contact {
+.search-container {
+    background-color: rgba(49, 58, 65, 0.548);
+    display: flex;
+    gap: 0;
+    border-radius: 2px;
+    padding: 5px 10px;
+    justify-content: center;
+
+}
+
+.search-container button {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin: 0;
+    border: none;
+    height: 25px;
+    font-size: 14px;
+    background-color: #3d4c55;
+}
+
+.search-container input {
+    width: 80%;
+    background-color: #3d4c55;
+    margin: 0;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    outline: none;
+
+}
+
+.search-container input::placeholder {
+    color: #c7c7c7;
+}
+
+.search-box .user__contact {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -117,8 +152,8 @@ header {
 }
 
 .user__contact__notification {
-    width: 25px;
-    height: auto;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
     background-color: #00a85a;
     text-align: center;
@@ -126,6 +161,7 @@ header {
     color: rgb(56, 56, 56);
     font-weight: 700;
     margin: 0 5px;
+    font-size: small;
 }
 
 .user__contact img {
@@ -172,12 +208,11 @@ header {
 
 
 .bg-image {
-    background-image: url("./assets/images/bg-zap.png");
+    background-image: url("../images/bg-zap.png");
     background-size: contain;
     position: absolute;
     top: 0;
     bottom: 0;
-    /* border: 1px solid red; */
     left: 0;
     filter: opacity(0.09);
     right: 0;
@@ -200,7 +235,7 @@ header {
 }
 
 .messages-container__list {
-    height: 75vh;
+    max-height: 75vh;
     overflow-y: auto !important;
     overflow-x: hidden;
     padding: 5px 95px 8px 95px;
@@ -283,8 +318,6 @@ small {
 .hide {
     display: none;
 }
-
-
 
 /* width */
 ::-webkit-scrollbar {

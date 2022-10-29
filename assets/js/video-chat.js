@@ -1,8 +1,8 @@
 const video_call = document.getElementById('video_call');
 const video_call_alert = document.getElementById('video_call_alert');
 let OWNSTREAM;
-let USERSTREAM;
 let callReceived;
+let usersSelectedID;
 
 function getPermission() {
     return navigator.mediaDevices.getUserMedia({
@@ -12,10 +12,11 @@ function getPermission() {
 }
 
 
-function callUser(peerID) {
+function callUser(peerID, userID) {
 
   getPermission().then((myStream) => {
     OWNSTREAM = myStream;
+    usersSelectedID = userID;
     const myVideoSection = document.getElementById('video-user');
     
     const myVideo = document.createElement("video");
@@ -31,13 +32,11 @@ function callUser(peerID) {
     const call = peer.call(peerID, myStream);
 
     call.on("stream", (stream) => {
-      USERSTREAM = stream;
       const otherVideoSection = document.getElementById('video-otheruser');
       const video = document.createElement("video");
       video.srcObject = stream;
 
       video.addEventListener('loadedmetadata', () => {
-        console.log('add video do usuário, quando ele aceitar: ', video)
         const hasVideo = otherVideoSection.hasChildNodes();
         if (!hasVideo) {
           otherVideoSection.appendChild(video);
@@ -52,6 +51,7 @@ function callUser(peerID) {
 
 function answerCall(call) {
   getPermission().then((myStream) => {
+    OWNSTREAM = myStream;
     const myVideoSection = document.getElementById('video-user');
     const myVideo = document.createElement("video");
     myVideo.srcObject = myStream;
@@ -65,14 +65,12 @@ function answerCall(call) {
     call.answer(myStream);
 
     call.on("stream", (stream) => {
-      USERSTREAM = stream;
       const otherVideoSection = document.getElementById('video-otheruser');
       const video = document.createElement("video");
       video.muted = true;
       video.srcObject = stream;
 
       video.addEventListener('loadedmetadata', () => {
-        console.log('add video do usuário, quando eu aceitar: ', video)
         const hasVideo = otherVideoSection.hasChildNodes();
         if (!hasVideo) {
           otherVideoSection.appendChild(video);
@@ -84,21 +82,24 @@ function answerCall(call) {
 }
 
 function endCall() {
-  OWNSTREAM.getTracks().forEach(track => track.stop());
-  USERSTREAM.getTracks().forEach(track => track.stop());
+  if (OWNSTREAM) {
+    OWNSTREAM.getTracks().forEach(track => track.stop());
+    video_call_alert.classList.add('hide');
+    document.getElementById('video-user').innerHTML = "";
+    document.getElementById('video-otheruser').innerHTML = "";
+  
+    socket.emit('private endcall', { to: usersSelectedID});
+  
+    if (!callReceived) return;
+  
+    try {
+      callReceived.close();
+    } catch (error) { }
+  
+    callReceived = null;
+    OWNSTREAM = null;
+  }
 
-  video_call_alert.classList.add('hide');
-  document.getElementById('video-user').innerHTML = "";
-  document.getElementById('video-otheruser').innerHTML = "";
-
-
-  if (!callReceived) return;
-
-  try {
-    callReceived.close();
-  } catch (error) { }
-
-  callReceived = null;
 }
 
 function aceeptCall() {
@@ -118,5 +119,10 @@ function closeCall() {
     callReceived = call;
     document.getElementById("user-request-call").innerHTML = socket.username;
     video_call_alert.classList.remove('hide');
+  });
+
+
+  socket.on('private endcall', () => {
+    closeCall()
   });
 })();

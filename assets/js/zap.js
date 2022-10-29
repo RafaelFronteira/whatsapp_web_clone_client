@@ -1,5 +1,5 @@
-const URL = 'https://zapzapclone.herokuapp.com';
-// const URL = 'http://localhost:3000';
+// const URL = 'https://zapzapclone.herokuapp.com';
+const URL = 'http://localhost:3000';
 const socket = io(URL, { autoConnect: false });
 const peer = new Peer();
 const log = console.log.bind(document);
@@ -26,11 +26,10 @@ function listenerHandler() {
     
     
     document.getElementById('start_call').addEventListener('click', () => {
-        callUser(selectedUser.user.peerID);
+        callUser(selectedUser.user.peerID, selectedUser.user.userID);
     });
 
     socket.onAny((event, ...args) => {
-        log('Event: ', event);
         switch(event) {
             case 'users':
                 const users = args[0];
@@ -44,7 +43,6 @@ function listenerHandler() {
                 break;
             case 'add user':
                 const event = args[0];
-                log('event: ', args[0])
                 if (event) {
                     addUserInContactList(event.newUser);
                     usersOnline = mergeArray(usersOnline, event.usersOnline)
@@ -52,7 +50,6 @@ function listenerHandler() {
                 }
                 break;
             case 'private message':
-                log('MSG: ', args[0])
                 const messageInfo = args[0];
 
                 renderMessage(messageInfo.from, messageInfo.content, messageInfo.type);
@@ -92,7 +89,7 @@ function addUserInContactList(user) {
     <div id="${user.userID}" class="user__contact" onclick="onSelectUser(this)">
         <section class="user__contact__user-info">
             <div>
-                <img src="./assets/images/other-user.jpeg" alt="user_image" />
+                <img src="https://picsum.photos/200" alt="user_image" />
             </div>
             <div style="margin: auto 0">
                 <h1>${user.username}</h1>
@@ -249,7 +246,6 @@ function recordAudioHandler() {
         startRecording: () => {
             audioRecorder.start().then(() => {
                 audioOptionsElement().showRecordingOpt();
-                console.log('Recording...');
             });
         },
         stopRecording: () => {
