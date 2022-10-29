@@ -1,0 +1,95 @@
+.audio {
+    width: 185px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 4px;
+}
+
+.audio img {
+    width: 31px;
+    height: 31px;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.text-indication-playing {
+    color: rgb(82, 82, 82);
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.text-indication-playing span {
+    animation-name: blinking-dot;
+    -webkit-animation-name: blinking-dot;
+    -moz-animation-name: blinking-dot;
+    -o-animation-name: blinking-dot;
+    animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+    -moz-animation-duration: 2s;
+    -o-animation-duration: 2s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+}
+
+@keyframes blinking-dot {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* The animation code */
+@-webkit-keyframes blinking-dot {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* The animation code */
+@-moz-keyframes blinking-dot {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* The animation code */
+@-o-keyframes blinking-dot {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

@@ -1,0 +1,106 @@
+.video_container {
+    position: absolute;
+    top: 10%;
+    left: 24%;
+    width: 50vw;
+    height: 75vh;
+    background-color: black;
+    border-radius: 5px;
+    padding: 5px 0;
+    z-index: 9999;
+}
+
+.video_container #video-otheruser {
+    border-radius: 2px;
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.video_container #video-user {
+    position: absolute;
+    height: 21%;
+    width: 18%;
+    bottom: 35px;
+    right: 25px;
+    border-radius: 5px;
+}
+
+
+video {
+    height: auto;
+    width: 100%;
+}
+
+.video_container #video-options {
+    position: absolute;
+    width: 20%;
+    height: 60px;
+    padding: 20px;
+    bottom: 0;
+    left: calc((100% - 20%) / 2);
+    display: flex;
+    justify-content: center;
+}
+
+
+.video_alert_container {
+    position: absolute;
+    border: 1px solid rgba(0, 0, 0, 0.466);
+    background-color: rgba(0, 0, 0, 0.418);
+    border-radius: 4px;
+    padding: 10px;
+    height: 65px;
+    width: 270px;
+
+    left: 50%;
+    top: 25%;
+    z-index: 9999;
+}
+
+.video_alert_container p {
+    margin: 0;
+    margin-bottom: 12px;
+    padding: 0;
+    text-align: center;
+}
+
+.video_alert_container p span {
+    font-weight: 600;
+    text-shadow: 1px 1px rgb(31, 31, 31);
+}
+
+.video_alert_container .btn-call-cancel {
+    border: 1px solid rgb(248, 31, 31);
+    border-radius: 4px;
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 800;
+    color: rgb(255, 234, 234);
+    text-shadow: 1px 1px black;
+    background-color: rgb(248, 31, 31);
+}
+
+.video_alert_container .btn-call-cancel:hover {
+    background-color: rgb(255, 92, 92);
+    cursor: pointer;
+}
+
+.video_alert_container .btn-call-ok {
+    border: 1px solid rgb(31, 248, 49);
+    border-radius: 4px;
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 800;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px black;
+    background-color: rgb(31, 248, 49);
+}
+
+.video_alert_container .btn-call-ok:hover {
+    background-color: rgb(138, 255, 92);
+    cursor: pointer;
+}
