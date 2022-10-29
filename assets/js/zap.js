@@ -1,5 +1,5 @@
-// const URL = 'https://zapzapclone.herokuapp.com';
-const URL = 'http://localhost:3000';
+const URL = 'https://zapzapclone.herokuapp.com';
+// const URL = 'http://localhost:3000';
 const socket = io(URL, { autoConnect: false });
 const peer = new Peer();
 const log = console.log.bind(document);
