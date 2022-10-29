@@ -172,7 +172,7 @@ header {
 
 
 .bg-image {
-    background-image: url("/assets/images/bg-zap.png");
+    background-image: url("./assets/images/bg-zap.png");
     background-size: contain;
     position: absolute;
     top: 0;
