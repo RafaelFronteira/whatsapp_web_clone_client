@@ -52,17 +52,18 @@ function callUser(peerID, userID) {
 function answerCall(call) {
   getPermission().then((myStream) => {
     OWNSTREAM = myStream;
+    usersSelectedID = userID;
     const myVideoSection = document.getElementById('video-user');
+    
     const myVideo = document.createElement("video");
     myVideo.muted = true;
     myVideo.srcObject = myStream;
-
     myVideo.addEventListener('loadedmetadata', () => {
       myVideoSection.appendChild(myVideo);
       video_call.classList.remove('hide');
       myVideo.play();
     });
-
+    
     call.answer(myStream);
 
     call.on("stream", (stream) => {
