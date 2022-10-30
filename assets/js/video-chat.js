@@ -54,6 +54,7 @@ function answerCall(call) {
     OWNSTREAM = myStream;
     const myVideoSection = document.getElementById('video-user');
     const myVideo = document.createElement("video");
+    myVideo.muted = true;
     myVideo.srcObject = myStream;
 
     myVideo.addEventListener('loadedmetadata', () => {
@@ -67,7 +68,6 @@ function answerCall(call) {
     call.on("stream", (stream) => {
       const otherVideoSection = document.getElementById('video-otheruser');
       const video = document.createElement("video");
-      video.muted = true;
       video.srcObject = stream;
 
       video.addEventListener('loadedmetadata', () => {
