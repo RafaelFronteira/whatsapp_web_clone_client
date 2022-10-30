@@ -1,5 +1,5 @@
-// const URL = 'https://zapzapclone.herokuapp.com';
-const URL = 'http://localhost:3000';
+const URL = 'https://zapzapclone.herokuapp.com';
+// const URL = 'http://localhost:3000';
 const socket = io(URL, { autoConnect: false });
 const peer = new Peer();
 const log = console.log.bind(document);
@@ -89,7 +89,7 @@ function addUserInContactList(user) {
     <div id="${user.userID}" class="user__contact" onclick="onSelectUser(this)">
         <section class="user__contact__user-info">
             <div>
-                <img src="https://picsum.photos/200" alt="user_image" />
+                <img src="./assets/images/other-user.jpeg" alt="user_image" />
             </div>
             <div style="margin: auto 0">
                 <h1>${user.username}</h1>
@@ -114,7 +114,7 @@ function startConversation(userID) {
         document.getElementById('receiver_name').title = user.username;
         document.getElementById('private_chat').classList.remove('hide');
         document.getElementById(userID).querySelector('#notification_alert')?.remove();
-        document.getElementById('messages_container').innerHTML = "";
+        // document.getElementById('messages_container').innerHTML = "";
     }
 }
 
