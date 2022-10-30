@@ -22,6 +22,8 @@ function callUser(peerID, userID) {
     const myVideo = document.createElement("video");
     myVideo.muted = true;
     myVideo.srcObject = myStream;
+
+    
     myVideo.addEventListener('loadedmetadata', () => {
       myVideoSection.appendChild(myVideo);
       video_call.classList.remove('hide');
@@ -52,30 +54,29 @@ function callUser(peerID, userID) {
 function answerCall(call) {
   getPermission().then((myStream) => {
     OWNSTREAM = myStream;
-    usersSelectedID = userID;
     const myVideoSection = document.getElementById('video-user');
-    
     const myVideo = document.createElement("video");
     myVideo.muted = true;
     myVideo.srcObject = myStream;
+
     myVideo.addEventListener('loadedmetadata', () => {
       myVideoSection.appendChild(myVideo);
       video_call.classList.remove('hide');
       myVideo.play();
     });
-    
+
     call.answer(myStream);
 
     call.on("stream", (stream) => {
       const otherVideoSection = document.getElementById('video-otheruser');
-      const video = document.createElement("video");
-      video.srcObject = stream;
+      const otherVideo = document.createElement("video");
+      otherVideo.srcObject = stream;
 
       video.addEventListener('loadedmetadata', () => {
         const hasVideo = otherVideoSection.hasChildNodes();
         if (!hasVideo) {
-          otherVideoSection.appendChild(video);
-          video.play();
+          otherVideoSection.appendChild(otherVideo);
+          otherVideo.play();
         }
       });
     });
