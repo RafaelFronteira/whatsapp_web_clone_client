@@ -23,7 +23,7 @@ function callUser(peerID, userID) {
     myVideo.muted = true;
     myVideo.srcObject = myStream;
 
-    
+
     myVideo.addEventListener('loadedmetadata', () => {
       myVideoSection.appendChild(myVideo);
       video_call.classList.remove('hide');
@@ -72,7 +72,7 @@ function answerCall(call) {
       const otherVideo = document.createElement("video");
       otherVideo.srcObject = stream;
 
-      video.addEventListener('loadedmetadata', () => {
+      otherVideo.addEventListener('loadedmetadata', () => {
         const hasVideo = otherVideoSection.hasChildNodes();
         if (!hasVideo) {
           otherVideoSection.appendChild(otherVideo);
